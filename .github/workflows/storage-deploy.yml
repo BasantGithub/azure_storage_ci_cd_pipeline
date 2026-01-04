@@ -16,10 +16,4 @@ jobs:
 
       - name: Upload text file to Blob Storage
         run: |
-          az storage blob upload \
-            --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} \
-            --container-name ${{ secrets.AZURE_STORAGE_CONTAINER }} \
-            --file employee_details.txt \
-            --name employee_details.txt \
-            --overwrite
-            --auth-mode login
+          az storage blob upload --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} --container-name ${{ secrets.AZURE_STORAGE_CONTAINER }} --file employee_details.txt --name employee_details.txt --overwrite --auth-mode login
