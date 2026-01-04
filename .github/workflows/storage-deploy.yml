@@ -13,11 +13,13 @@ jobs:                                  # Workflows are made of jobs
       # Step 1: Checkout repo so employee_details.txt is available 
       - name: Checkout code 
         uses: actions/checkout@v4     # Prebuilt action to pull repo code
-        
+
+      # Step 2: Login to Azure using Service Principal
       - name: Azure login
         run: |
           az login --service-principal --username ${{ secrets.AZURE_CLIENT_ID }} --password ${{ secrets.AZURE_CLIENT_SECRET }} --tenant ${{ secrets.AZURE_TENANT_ID }}
 
+      # Step 3: Upload file into Azure Storage account
       - name: Upload text file to Blob Storage
         run: |
           az storage blob upload --account-name ${{ secrets.AZURE_STORAGE_ACCOUNT }} --container-name ${{ secrets.AZURE_STORAGE_CONTAINER }} --file employee_details.txt --name employee_details.txt --overwrite --auth-mode login
