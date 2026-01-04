@@ -1,18 +1,18 @@
-name: Upload file to Azure Storage
+name: Upload file to Azure Storage     # Friendly name for your workflow
 
-on:
-  push:
+on:                                    # Triggers (when workflow runs)
+  push:                                # Example: run when code is pushed
     branches:
-      - main
+      - main                           # Only on main branch
 
-jobs:
-  upload:
-    runs-on: ubuntu-latest
+jobs:                                  # Workflows are made of jobs
+  upload_file:                         # Job name
+    runs-on: ubuntu-latest             # Runner (environment: Ubuntu, Windows, Mac)
 
-    steps:
+    steps:                             # Each job has steps
       # Step 1: Checkout repo so employee_details.txt is available 
       - name: Checkout code 
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4     # Prebuilt action to pull repo code
         
       - name: Azure login
         run: |
